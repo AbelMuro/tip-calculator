@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'space mono';
+    src: url('./Fonts/SpaceMono-Bold.ttf');
+}
+
+:root{
+    --font: 'space mono';
+}
+
+body{
+    min-height: 100vh;
+    background-color: #C5E4E7;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    box-sizing: border-box;
+    transition: all 0.2s linear;
+}
+
+.container{
+    width: 920px;
+    height: 621.996px;
+    display: flex;
+    flex-direction: column;
+    gap: 87.86px;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+}
+
+.logo{
+    width: 86.664px;
+    object-fit: contain;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+    appearance: textfield;
+}

@@ -1,11 +1,19 @@
 import React from 'react';
-import styles from './styles.module.css';
+import CalculateTip from './CalculateTip';
+import logo from './images/logo.svg';
+import Store from './Store';
+import { Provider } from 'react-redux';
+import './styles.css';
+
 
 function App() {
     return(
-        <main className={styles.container}>
-            
-        </main>
+        <Provider store={Store}>
+            <main className='container'>
+                <img src={logo} className='logo'/>
+                <CalculateTip/>
+            </main>
+        </Provider>
     )
 }
 
