@@ -3,6 +3,8 @@ import styles from './styles.module.css';
 import dollarIcon from './icons/icon-dollar.svg';
 import {useDispatch} from 'react-redux';
 
+
+//i will need to check the logic in this function
 function BillInput() {
     const dispatch = useDispatch();
     const [bill, setBill] = useState('');
@@ -13,8 +15,8 @@ function BillInput() {
     const handleBill = (e) => {
         e.target.setCustomValidity('');
         const userInput = e.target.value;
-        const checkInput = userInput.replaceAll('.', '').replaceAll(',', '');
-        if(checkInput.match(/\D/g)) return;                  //will not accept any non-digit character
+        const checkInput = userInput.replaceAll('.', '').replaceAll(',', '');                  
+        if(!checkInput.match(/\d/g)) return;                  //will not accept any non-digit character
         setBill(userInput);
     }
 
@@ -36,7 +38,7 @@ function BillInput() {
             newBill = Number(newBill);
             const formatBill = newBill.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             setBill(formatBill);
-            dispatch({type: 'update bill', bill: formatBill});            
+            dispatch({type: 'update bill', bill: newBill});            
         }
 
     }

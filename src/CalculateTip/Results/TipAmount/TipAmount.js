@@ -1,8 +1,39 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styles from './styles.module.css';
+import {useSelector, useDispatch} from 'react-redux'
 
-//this is where i left off, i will need to property align the elements within their grid
 function TipAmount() {
+    const [amount, setAmount] = useState('0.00');
+    const amountRef = useRef();
+    const dispatch = useDispatch();
+    const tip = useSelector(state => state.tip);
+    const persons = useSelector(state => state.people);
+    const bill = useSelector(state => state.bill);
+
+    useEffect(() => {
+        if(!tip || !persons || !bill) {
+            setAmount('0.00');
+            return;
+        }
+
+        let formatTip = Number(tip.replace('%', ''));
+        formatTip = formatTip/100;
+        let result = bill * formatTip;
+        result = result/persons;
+        setAmount(result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+
+    }, [tip, persons, bill])
+
+    useEffect(() => {
+        dispatch({type: 'update tip amount', tipAmount: amount});
+        if(amount.length >= 8 && amount.length <= 9)
+            amountRef.current.style.fontSize = '2rem';
+        else if(amount.length >= 10)
+            amountRef.current.style.fontSize = '1.5rem';  
+        else
+            amountRef.current.style.fontSize = '';  
+    }, [amount])
+
     return(
         <div className={styles.container}>
             <h1 className={styles.titleOne}>
@@ -11,8 +42,8 @@ function TipAmount() {
             <h2 className={styles.titleTwo}>
                 / person
             </h2>
-            <p className={styles.total}>
-                $4.27
+            <p className={styles.total} ref={amountRef}>
+                ${amount}
             </p>
         </div>
     )

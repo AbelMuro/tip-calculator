@@ -7,7 +7,7 @@
     background-color: #00474B;
     display: flex;
     align-items: center;
-    padding-top: 40px;
+    padding: 40px;
     flex-direction: column;
     gap: 25px;
 }
