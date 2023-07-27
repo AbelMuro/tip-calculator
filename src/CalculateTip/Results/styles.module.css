@@ -18,3 +18,10 @@
         grid-row: initial;
     }
 }
+
+@media(max-width: 530px){
+    .container{
+        height: 257px;
+        padding: 39px 22px;
+    }
+}

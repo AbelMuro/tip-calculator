@@ -3,7 +3,7 @@ import TipAmount from './TipAmount';
 import TotalAmount from './TotalAmount';
 import styles from './styles.module.css';
 
-//this is where i left off, i will need to work on the responsiveness
+//this is where i left off, i wil need to ad a reset button
 
 function Results() {
     return(

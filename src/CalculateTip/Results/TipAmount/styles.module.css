@@ -41,3 +41,10 @@
     justify-content: flex-end;
     align-items: center
 }
+
+@media(max-width: 530px){
+    .total{
+        height: 47px;
+        font-size: 2rem;
+    }
+}
