@@ -48,3 +48,17 @@ input[type=number]{
     -moz-appearance: textfield;
     appearance: textfield;
 }
+
+@media(max-width: 970px){
+    .container{
+        width: 90%;
+    }
+}
+
+@media(max-width: 530px){
+    .container{
+        width: 100%;
+        top: -50px;
+        gap: 40.86px;
+    }
+}

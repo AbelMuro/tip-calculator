@@ -1,7 +1,7 @@
 .container{
     width: 100%;
     grid-column: 1/2;
-    row-gap: 2/3;
+    grid-row: 2/3;
     display: grid;
     grid-template-columns: repeat(3, 117px);
     align-content: flex-start;
@@ -38,4 +38,12 @@
 .tip_box:hover{
     color: #00474B;
     background-color: #9FE8DF;
+}
+
+@media(max-width: 970px){
+    .container{
+        grid-template-columns: repeat(3, 30%);
+        row-gap: 16px;
+        column-gap: 16px;
+    }
 }

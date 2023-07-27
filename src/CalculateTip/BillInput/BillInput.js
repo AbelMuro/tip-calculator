@@ -15,6 +15,7 @@ function BillInput() {
     const handleBill = (e) => {
         e.target.setCustomValidity('');
         const userInput = e.target.value;
+        if(userInput.length >= 11) return;
         const checkInput = userInput.replaceAll('.', '').replaceAll(',', '');                  
         if(!checkInput.match(/\d/g)) return;                  //will not accept any non-digit character
         setBill(userInput);

@@ -10,3 +10,17 @@
     box-shadow: 0px 32px 43px 0px rgba(79, 166, 175, 0.20);
     padding: 32px;
 }
+
+@media(max-width: 970px){
+    .container{
+        grid-template-columns: 1fr 413px;
+    }
+}
+
+@media(max-width: 830px){
+    .container{
+        grid-template-columns: 100%;
+        height: auto;
+        row-gap: 32px;
+    }
+}
