@@ -12,6 +12,7 @@ function CustomInput() {
 
     const handleBlur = () => {
         dispatch({type: 'update tip', tip: customTip});
+        dispatch({type: 'disable reset button', disable: true}); 
     }
 
     return(

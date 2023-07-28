@@ -1,0 +1,40 @@
+.reset{
+    position: absolute;
+    border-radius: 8px;
+    width: 90%;
+    height: 48px;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: #26C2AE;
+    color: #00474B;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.reset:disabled{
+    color: #00474B;
+    text-align: center;
+    font-family: var(--font);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    background-color: #0D686D;
+}
+
+.reset:hover:not(.reset:disabled){
+    background-color: #9FE8DF;
+    cursor: pointer;
+}
+
+@media(max-width: 530px){
+    .reset{
+        bottom: 24px;
+    }
+}

@@ -10,7 +10,7 @@ function SelectTip(){
     const handleTip = (e) => {
         if(!e.target.matches('.' + styles.tip_box)) return;
         const newTip = e.target.getAttribute('data-id');
-        dispatch({type: 'update tip', tip: newTip});        
+        dispatch({type: 'update tip', tip: newTip});    
     }
 
     useEffect(() => {
@@ -30,6 +30,7 @@ function SelectTip(){
             }
         })
     }, [tip])
+
 
     return(
         <section className={styles.container} onClick={handleTip}>

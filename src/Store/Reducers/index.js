@@ -9,7 +9,7 @@ const RootReducer = combineReducers({
     bill: billReducer,      
     tip: tipReducer,         
     people: peopleReducer,
-    tipAmount: tipAmountReducer         
+    tipAmount: tipAmountReducer
 });
 
 

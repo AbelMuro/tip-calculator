@@ -20,8 +20,9 @@ function NumberOfPeopleInput(){
             errorMessageRef.current.style.display = 'block';
             inputRef.current.style.border = '2px solid #E17052';
         }
-        else
+        else{
             dispatch({type: 'update people', people});
+        }
     }
 
     return(
@@ -32,6 +33,7 @@ function NumberOfPeopleInput(){
             <div className={styles.input_container}>
                 <input type='number' 
                     value={people}
+                    placeholder="0"
                     onChange={handlePeople}
                     onBlur={handleBlur}
                     className={styles.input} ref={inputRef}/>
