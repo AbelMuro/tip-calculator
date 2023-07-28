@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styles from './styles.module.css';
 import {useSelector, useDispatch} from 'react-redux'
+import useMediaQuery from '../../../Hooks/useMediaQuery';
 
 function TipAmount() {
+    const mobile = useMediaQuery('(max-width: 465px)')
     const [amount, setAmount] = useState('0.00');
     const amountRef = useRef();
     const dispatch = useDispatch();
@@ -29,12 +31,12 @@ function TipAmount() {
 
     useEffect(() => {
         if(total.length >= 8 && total.length <= 9)
-            amountRef.current.style.fontSize = '2rem';
+            amountRef.current.style.fontSize = mobile ? '1.5rem' : '2rem';
         else if(total.length >= 10)
-            amountRef.current.style.fontSize = '1.5rem';  
+            amountRef.current.style.fontSize = mobile ? '1rem' : '1.5rem';  
         else
             amountRef.current.style.fontSize = '';  
-    }, [total])
+    }, [total, mobile])
 
     return(
         <div className={styles.container}>

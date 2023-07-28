@@ -2,8 +2,10 @@ import React, {useState, useEffect, useRef} from 'react';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
 import { useDispatch } from 'react-redux';
+import useMediaQuery from '../../../Hooks/useMediaQuery';
 
 function TotalAmount() {
+    const mobile = useMediaQuery('(max-width: 465px)');
     const [total, setTotal] = useState('0.00');
     const dispatch = useDispatch();
     const totalRef = useRef();
@@ -24,12 +26,12 @@ function TotalAmount() {
     useEffect(() => {
         dispatch({type: 'update total', total});
         if(total.length >= 8 && total.length <= 9)
-            totalRef.current.style.fontSize = '2rem';
+            totalRef.current.style.fontSize = mobile ? '1.5rem' :'2rem';
         else if(total.length >= 10)
-            totalRef.current.style.fontSize = '1.5rem';  
+            totalRef.current.style.fontSize = mobile ? '1rem' : '1.5rem';  
         else
             totalRef.current.style.fontSize = '';  
-    }, [total])
+    }, [total, mobile])
 
 
 

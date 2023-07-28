@@ -7,12 +7,14 @@ function CustomInput() {
     const dispatch = useDispatch();
 
     const handleTip = (e) => {
+        const tip = e.target.value;
+        console.log(tip);
+        if(Number(tip) < 0 || Number(tip) > 100) return;
         setCustomTip(e.target.value);
     }
 
     const handleBlur = () => {
         dispatch({type: 'update tip', tip: customTip});
-        dispatch({type: 'disable reset button', disable: true}); 
     }
 
     return(

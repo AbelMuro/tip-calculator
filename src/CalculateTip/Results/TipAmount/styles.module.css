@@ -27,7 +27,6 @@
 }
 
 .total{
-    width: 200px;
     height: 71px;
     color: #26C2AE;
     text-align: right;
@@ -41,7 +40,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    justify-self: flex-end;
 }
 
 @media(max-width: 530px){
