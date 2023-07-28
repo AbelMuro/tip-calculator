@@ -1,9 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect, forwardRef, useImperativeHandle} from 'react';
 import styles from './styles.module.css';
 import personIcon from './icons/icon-person.svg';
 import {useDispatch} from 'react-redux';
 
-function NumberOfPeopleInput(){
+const NumberOfPeopleInput = forwardRef((props, ref) => {
     const dispatch = useDispatch();
     const [people, setPeople] = useState('');
     const inputRef = useRef();
@@ -25,6 +25,18 @@ function NumberOfPeopleInput(){
         }
     }
 
+
+    useImperativeHandle(ref, () => ({
+        resetState() {
+            setPeople('');
+        }
+    }))
+
+    useEffect(() => {
+        errorMessageRef.current.style.display = '';
+        inputRef.current.style.border = '';
+    }, [people])
+
     return(
         <fieldset className={styles.container}>
             <label className={styles.label}>
@@ -34,6 +46,7 @@ function NumberOfPeopleInput(){
                 <input type='number' 
                     value={people}
                     placeholder="0"
+                    name='people'
                     onChange={handlePeople}
                     onBlur={handleBlur}
                     className={styles.input} ref={inputRef}/>
@@ -44,6 +57,6 @@ function NumberOfPeopleInput(){
             </p>
         </fieldset>
     )
-}
+})
 
 export default NumberOfPeopleInput;

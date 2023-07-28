@@ -1,21 +1,36 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle} from 'react';
 import styles from './styles.module.css';
 import dollarIcon from './icons/icon-dollar.svg';
 import {useDispatch} from 'react-redux';
 
-
-function BillInput() {
+const BillInput = forwardRef((props, ref) => {
     const dispatch = useDispatch();
     const [bill, setBill] = useState('');
     const inputRef = useRef();
     const emptyMessageRef = useRef();
     const zeroMessageRef = useRef();
 
+    const hasMoreThanOneDecimalPoint = (bill) => {
+        let temp = 0;
+
+        for(let i = 0; i < bill.length; i++){
+            if(bill[i] === '.'){
+                temp++;
+                if(temp == 2)
+                    return true
+            }
+        }
+        return false;
+    }
+
     const handleBill = (e) => {
         e.target.setCustomValidity('');
         const userInput = e.target.value;
+        const checkSizeOfInput = Number(e.target.value.replaceAll(',', ''))
+        if(checkSizeOfInput > 9999999999) return;
+        if(hasMoreThanOneDecimalPoint(userInput)) return;
         const checkInput = userInput.replaceAll('.', '').replaceAll(',', '');                  
-        if(!checkInput.match(/\d/g) && checkInput != '') return;                  //will not accept any non-digit character
+        if(checkInput.match(/\D/g)) return;                  //will not accept any non-digit character
         setBill(userInput);
     }
 
@@ -47,6 +62,12 @@ function BillInput() {
         inputRef.current.style.border = ''
     }, [bill])
 
+    useImperativeHandle(ref, () => ({
+        resetState() {
+            setBill('');
+        }
+    }))
+
     return(
         <fieldset className={styles.container}>
             <label className={styles.label}>
@@ -71,6 +92,6 @@ function BillInput() {
             </p>
         </fieldset>
     )
-}
+})
 
 export default BillInput;

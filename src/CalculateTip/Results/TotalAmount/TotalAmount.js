@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.css';
+import { useDispatch } from 'react-redux';
 
 function TotalAmount() {
     const [total, setTotal] = useState('0.00');
+    const dispatch = useDispatch();
     const totalRef = useRef();
     const bill = useSelector(state => state.bill);
     const people = useSelector(state => state.people);
@@ -20,6 +22,7 @@ function TotalAmount() {
     }, [bill, people, tipAmount])
 
     useEffect(() => {
+        dispatch({type: 'update total', total});
         if(total.length >= 8 && total.length <= 9)
             totalRef.current.style.fontSize = '2rem';
         else if(total.length >= 10)
@@ -27,6 +30,8 @@ function TotalAmount() {
         else
             totalRef.current.style.fontSize = '';  
     }, [total])
+
+
 
     return(
         <div className={styles.container}>

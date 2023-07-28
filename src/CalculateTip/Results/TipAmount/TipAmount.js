@@ -9,30 +9,32 @@ function TipAmount() {
     const tip = useSelector(state => state.tip);
     const persons = useSelector(state => state.people);
     const bill = useSelector(state => state.bill);
+    const total = useSelector(state => state.total);
 
     useEffect(() => {
         if(!tip || !persons || !bill) {
             setAmount('0.00');
             return;
         }
-
         let formatTip = Number(tip.replace('%', ''));
         formatTip = formatTip/100;
         let result = bill * formatTip;
         result = result/persons;
         setAmount(result.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
-
     }, [tip, persons, bill])
 
     useEffect(() => {
-        dispatch({type: 'update tip amount', tipAmount: amount});
-        if(amount.length >= 8 && amount.length <= 9)
+        dispatch({type: 'update tip amount', tipAmount: amount});        
+    }, [amount])
+
+    useEffect(() => {
+        if(total.length >= 8 && total.length <= 9)
             amountRef.current.style.fontSize = '2rem';
-        else if(amount.length >= 10)
+        else if(total.length >= 10)
             amountRef.current.style.fontSize = '1.5rem';  
         else
             amountRef.current.style.fontSize = '';  
-    }, [amount])
+    }, [total])
 
     return(
         <div className={styles.container}>
